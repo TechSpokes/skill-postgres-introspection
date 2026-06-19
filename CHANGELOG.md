@@ -4,6 +4,12 @@
 
 - No unreleased changes.
 
+## [v1.2.0]
+
+- Lead the README with how to install the skill for normal use: download a ZIP from the Releases page and install the standalone skill, the Claude Code plugin, or the Codex plugin.
+- Move the maintainer commands (`npm run validate`, `npm run package`) into a "For maintainers and contributors" section, so end users are not told to clone and build.
+- Align `docs/INSTALL.md` with the Releases download path and name the asset for each install option.
+
 ## [v1.1.0]
 
 - Document the release process and the repository workflow in `docs/RELEASING.md`, including how changes land, the `main` ruleset, the CI gate, and the tag-triggered draft release.

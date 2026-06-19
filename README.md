@@ -2,6 +2,24 @@
 
 This repository packages an agent skill that teaches an AI coding agent to build a database introspection capability inside whatever repository it is working in. The skill is database-agnostic in method, with a runnable PostgreSQL reference implementation.
 
+## Install
+
+Most people do not need to clone this repository. Download the latest release from the [Releases page](https://github.com/TechSpokes/skill-postgres-introspection/releases) and install the asset that matches your tool. Every release attaches three ZIP files. After installing, ask your agent to set up database introspection in your repository.
+
+### Standalone skill
+
+This works with any agent that loads skill folders. Download `postgres-introspection-vX.Y.Z.zip`, unzip it, and copy the `postgres-introspection/` folder into a skills directory your agent reads, for example `.claude/skills/`, `.codex/skills/`, or `.github/skills/`. Keep the folder intact so `SKILL.md` can find its references.
+
+### Claude Code plugin
+
+Download `postgres-introspection-claude-plugin-vX.Y.Z.zip` and unzip it. The package contains `.claude-plugin/plugin.json` and the skill under `skills/`. Install it as a Claude Code plugin.
+
+### Codex plugin
+
+Download `postgres-introspection-codex-plugin-vX.Y.Z.zip` and unzip it. The package contains `.codex-plugin/plugin.json` and the skill under `skills/`. Install it as a Codex plugin.
+
+For step-by-step details see [docs/INSTALL.md](docs/INSTALL.md), and for what to expect when you run it see [docs/QUICKSTART.md](docs/QUICKSTART.md).
+
 ## What introspection is
 
 Introspection is a read-only tool that reads a live database's catalogs and renders the current structure, security (row-level security, roles, grants), views, functions, and extensions into committed, navigable files. It is generated from the live database, not authored by hand, so it always reflects reality.
@@ -52,23 +70,23 @@ The skill instructs the agent to treat your data as sacred: to read the database
 - [docs/ROADMAP.md](docs/ROADMAP.md) - Where the skill is heading and why.
 - [docs/ABOUT.md](docs/ABOUT.md) - The people and companies behind it.
 
-## Validation
+## For maintainers and contributors
 
-Run:
+These steps are for working on this repository, not for installing the skill. To install the skill, use the [Install](#install) section above.
+
+Clone the repository, then validate the package:
 
 ```bash
 npm run validate
 ```
 
-## Packaging
-
-Run:
+Build the release assets for a tag:
 
 ```bash
 npm run package -- vX.Y.Z
 ```
 
-Use the intended release tag. Packaging writes release assets to `dist/assets/`.
+Use the intended release tag. Assets are written to `dist/assets/`. The contribution and release process is in [CONTRIBUTING.md](CONTRIBUTING.md) and [docs/RELEASING.md](docs/RELEASING.md).
 
 ## Author
 

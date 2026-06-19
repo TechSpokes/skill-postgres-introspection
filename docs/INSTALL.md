@@ -1,6 +1,6 @@
 # Install
 
-The skill installs as a standalone skill folder or as a plugin package. Install the contents of a release ZIP rather than cloning the whole repository, so you get only the runtime skill.
+The skill installs as a standalone skill folder or as a plugin package. Download the latest release from the [Releases page](https://github.com/TechSpokes/skill-postgres-introspection/releases) and use the asset that matches your tool, rather than cloning the whole repository, so you get only the runtime skill. Each release attaches three ZIP files: the standalone skill, the Claude plugin, and the Codex plugin.
 
 ## Installation goal
 
@@ -8,7 +8,7 @@ Keep the skill directory intact so `SKILL.md` can find its referenced resources.
 
 ## Standalone skill
 
-Copy the skill folder from the standalone release ZIP into a supported skill location. Common locations include:
+Download `postgres-introspection-vX.Y.Z.zip`, unzip it, and copy the `postgres-introspection/` folder into a supported skill location. Common locations include:
 
 - `.github/skills/`
 - `.codex/skills/`
@@ -18,11 +18,11 @@ Keep `SKILL.md` and its support folders together.
 
 ## Codex plugin
 
-Use the Codex plugin ZIP from the release. The package contains `.codex-plugin/plugin.json` and a `skills/` directory.
+Download `postgres-introspection-codex-plugin-vX.Y.Z.zip` from the release and unzip it. The package contains `.codex-plugin/plugin.json` and a `skills/` directory. Install it as a Codex plugin.
 
 ## Claude plugin
 
-Use the Claude plugin ZIP from the release. The package contains `.claude-plugin/plugin.json` and a `skills/` directory.
+Download `postgres-introspection-claude-plugin-vX.Y.Z.zip` from the release and unzip it. The package contains `.claude-plugin/plugin.json` and a `skills/` directory. Install it as a Claude Code plugin.
 
 ## Removing the skill after setup
 
