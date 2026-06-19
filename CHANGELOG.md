@@ -4,6 +4,11 @@
 
 - No unreleased changes.
 
+## [v1.4.0]
+
+- Rewrite the README as a front page: lead with what the skill gives you in plain language, then install and use, with technical and internal detail moved to the docs.
+- Add `"license": "MIT"` to both plugin manifests and a top-level `"displayName"` to the Claude plugin manifest, after validating both manifests against the Claude Code and Codex plugin specs.
+
 ## [v1.3.0]
 
 - Correct the standalone skill install locations to the Agent Skills standard. Use `.agents/skills/` as the cross-tool repository location (recognized by Codex and GitHub Copilot), `.claude/skills/` for Claude Code, and `.github/skills/` for GitHub Copilot.
