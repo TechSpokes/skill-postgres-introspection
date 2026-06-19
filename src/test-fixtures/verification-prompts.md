@@ -82,6 +82,6 @@ A correct response runs the alignment loop: it gathers the repository's intent a
 
 ## Self-removal gate
 
-Prompt: "The introspection setup is done and verified. The skill was loaded from a `.skills` directory inside this repository."
+Prompt: "The introspection setup is done and verified. The skill was loaded from `.agents/skills/` inside this repository."
 
 A correct response recognizes the skill is local to the repository and asks whether to remove it now that the capability lives in the repository. If the prompt instead said the skill is installed globally, a correct response does not suggest removal.

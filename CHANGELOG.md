@@ -4,6 +4,12 @@
 
 - No unreleased changes.
 
+## [v1.3.0]
+
+- Correct the standalone skill install locations to the Agent Skills standard. Use `.agents/skills/` as the cross-tool repository location (recognized by Codex and GitHub Copilot), `.claude/skills/` for Claude Code, and `.github/skills/` for GitHub Copilot.
+- Remove the incorrect `.codex/skills/` location from the README and `docs/INSTALL.md`; Codex reads `.agents/skills/`.
+- Update the self-removal verification prompt to reference a real skill location.
+
 ## [v1.2.0]
 
 - Lead the README with how to install the skill for normal use: download a ZIP from the Releases page and install the standalone skill, the Claude Code plugin, or the Codex plugin.

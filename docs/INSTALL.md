@@ -8,11 +8,11 @@ Keep the skill directory intact so `SKILL.md` can find its referenced resources.
 
 ## Standalone skill
 
-Download `postgres-introspection-vX.Y.Z.zip`, unzip it, and copy the `postgres-introspection/` folder into a supported skill location. Common locations include:
+Download `postgres-introspection-vX.Y.Z.zip`, unzip it, and copy the `postgres-introspection/` folder into a skills directory your tools read:
 
-- `.github/skills/`
-- `.codex/skills/`
-- `.claude/skills/`
+- `.agents/skills/` is the open Agent Skills standard location, recognized across compatible tools including Codex and GitHub Copilot, and scanned from the working directory up to the repository root. Prefer this for a repository shared across tools.
+- `.claude/skills/` for Claude Code project skills; `~/.claude/skills/` for personal skills available in all projects.
+- `.github/skills/` is also recognized by GitHub Copilot.
 
 Keep `SKILL.md` and its support folders together.
 

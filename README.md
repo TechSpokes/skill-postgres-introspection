@@ -8,7 +8,13 @@ Most people do not need to clone this repository. Download the latest release fr
 
 ### Standalone skill
 
-This works with any agent that loads skill folders. Download `postgres-introspection-vX.Y.Z.zip`, unzip it, and copy the `postgres-introspection/` folder into a skills directory your agent reads, for example `.claude/skills/`, `.codex/skills/`, or `.github/skills/`. Keep the folder intact so `SKILL.md` can find its references.
+This works with any agent that follows the Agent Skills standard. Download `postgres-introspection-vX.Y.Z.zip`, unzip it, and copy the `postgres-introspection/` folder into a skills directory in your repository:
+
+- `.agents/skills/` is the cross-tool standard location, recognized by Codex, GitHub Copilot, and other compatible tools, and scanned up to the repository root. Prefer this when several tools share one repository.
+- `.claude/skills/` for Claude Code; use `~/.claude/skills/` for a personal install available in all projects.
+- `.github/skills/` is also recognized by GitHub Copilot.
+
+Keep the folder intact so `SKILL.md` can find its references.
 
 ### Claude Code plugin
 
