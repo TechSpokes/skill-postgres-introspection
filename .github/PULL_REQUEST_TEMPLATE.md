@@ -17,7 +17,7 @@ Which area changed?
 ## Validation
 
 - [ ] Ran `npm run validate`
-- [ ] Ran `npm run package -- v1.0.0` if packaging or release behavior changed
+- [ ] Ran `npm run package -- vX.Y.Z` (any tag) if packaging or release behavior changed
 - [ ] Updated `src/test-fixtures/verification-prompts.md` if observable behavior changed
 - [ ] Checked that no credentials or real domain schema were added
 

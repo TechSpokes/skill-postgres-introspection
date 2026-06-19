@@ -53,10 +53,10 @@ On Windows, never redirect output to `nul`; use `/dev/null`, which Git Bash tran
 
 ## Workflow
 
-Work on a branch and land changes through a pull request; do not push directly to `main`. Commit and push only when the user asks.
+Work on a branch and land changes through a pull request; do not push directly to `main`. This is enforced by a repository ruleset: `main` requires a pull request, requires the `Validate skill package` check to pass on an up-to-date branch, requires conversation resolution, allows only squash merges, requires linear history, and blocks force pushes and deletion, for administrators too. Dependabot pull requests follow the same path. Commit and push only when the user asks. The full process and the repository safeguards are documented in `docs/RELEASING.md`.
 
 ## Validation and release
 
 Run `npm run validate` after any change to `src/`, `docs/`, `packaging/`, or the workflows. It checks the frontmatter, the manifests, the internal links, the release notes, and the workflow mode.
 
-To release, follow `docs/RELEASING.md`: update the skill and references, update `README.md` and docs, add a `## [vX.Y.Z]` section to `CHANGELOG.md`, add `docs/releases/vX.Y.Z.md`, run `npm run validate`, then run `npm run package -- vX.Y.Z` and tag the release.
+`docs/RELEASING.md` is the single source for how changes land and how a release is cut. Follow it rather than repeating its steps here, so the two never drift apart.

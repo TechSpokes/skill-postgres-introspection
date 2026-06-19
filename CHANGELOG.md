@@ -4,6 +4,13 @@
 
 - No unreleased changes.
 
+## [v1.1.0]
+
+- Document the release process and the repository workflow in `docs/RELEASING.md`, including how changes land, the `main` ruleset, the CI gate, and the tag-triggered draft release.
+- Make `docs/RELEASING.md` the single source for the release process; `AGENTS.md` now points to it instead of repeating the steps, so the two cannot drift.
+- Reconcile release instructions across `CONTRIBUTING.md` and the pull request template, and replace the hardcoded `npm run package -- v1.0.0` with a version-neutral `vX.Y.Z`.
+- Record the branch protection setup: pull requests required, the `Validate skill package` check required, squash-only merges, linear history, and enforcement for administrators.
+
 ## [v1.0.0]
 
 - First release of the `postgres-introspection` skill.
