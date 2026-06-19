@@ -62,6 +62,7 @@ Plain files under a `state/` folder in your repository: one navigable data file,
 
 ## Learn more
 
+- [docs/PURPOSE.md](docs/PURPOSE.md) for why this skill exists and what it gives you, especially as a new developer.
 - [docs/QUICKSTART.md](docs/QUICKSTART.md) and [docs/INSTALL.md](docs/INSTALL.md) to get started.
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) and [docs/FOUNDATIONS.md](docs/FOUNDATIONS.md) to understand the design and the ideas behind it.
 - [docs/ROADMAP.md](docs/ROADMAP.md), [docs/HOW-THIS-SKILL-WAS-BUILT.md](docs/HOW-THIS-SKILL-WAS-BUILT.md), and [docs/ABOUT.md](docs/ABOUT.md) for where it is going and who builds it.

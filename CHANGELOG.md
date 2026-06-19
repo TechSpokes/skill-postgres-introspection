@@ -4,6 +4,11 @@
 
 - No unreleased changes.
 
+## [v1.5.0]
+
+- Add `docs/PURPOSE.md`, a front-door document explaining why the skill exists and what it gives a developer, especially a newcomer, and link it from the README.
+- Add a tracked `.skill-template-feedback/` folder (with a README and `.gitkeep`) whose contents are git-ignored, as the local home for notes that should be surfaced upstream to the skill template.
+
 ## [v1.4.0]
 
 - Rewrite the README as a front page: lead with what the skill gives you in plain language, then install and use, with technical and internal detail moved to the docs.
