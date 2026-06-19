@@ -4,3 +4,4 @@ tmp/
 .template/state/
 .idea/
 *.log
+.intake/
