@@ -1,42 +1,30 @@
 # Quickstart
 
-This repository starts as a template for building a skill repository.
+This skill teaches an AI coding agent to build a database introspection capability inside a repository. This page shows how to install it and what to expect when you run it.
 
-## Create A Skill Repository
+## Install the skill
 
-1. Open the template repository on GitHub.
-2. Click `Use this template`.
-3. Select `Create a new repository`.
-4. Choose the owner, repository name, description, and visibility.
-5. Click `Create repository from template`.
-6. Clone the generated repository.
-7. Add source material or a short skill idea to `.intake/`.
-8. Ask an AI coding agent to build the skill from intake.
-9. Let the agent assess and resolve intake gaps before skill construction.
-10. Let the agent rewrite the repository into maintenance mode.
-11. Review the generated skill, docs, manifests, and validation results.
+Install the skill into a location your agent host reads. See [INSTALL.md](INSTALL.md) for standalone and plugin options. Keep `SKILL.md` and its `references/`, `scripts/`, and `test-fixtures/` folders together so relative paths resolve.
 
-## What To Expect From The Agent
+## Use it on a repository
 
-The agent should not merely fill placeholders. It should infer the reusable capability hidden in the intake, decide what belongs in the skill, record important assumptions, and explain the reasoning that future maintainers need.
+Open the repository whose database you want to introspect, and ask the agent to set up database introspection. A request like "set up database introspection in this repository" activates the skill.
 
-If the agent finds contradictions in the intake, it should resolve low-risk issues locally and document high-impact assumptions. The goal is a maintainable skill, not a perfect transcript of every source file.
+The agent confirms with you before building anything, checks that you have a safe database to point at, fits the tool to your repository's stack, generates the committed state, and offers to wire generation to your migration process.
 
-If `.intake/` is empty, weak, conflicting, or exploratory, the agent should not start `src/SKILL.md` immediately. It should first determine what is missing, why the missing evidence matters, and how to resolve the gap with minimal human help.
+## What to expect from the agent
 
-Expected resolution paths include extracting evidence, making low-risk assumptions, inspecting local tools or docs, creating disposable experiments, narrowing scope, asking concise questions, or stopping before construction when the skill would otherwise be fabricated.
+The skill directs the agent to read your database read-only and never to reset, wipe, or run migrations against a database with real data to obtain a clean state, and never to touch a production database without your explicit, informed consent.
 
-## What The Agent Builds
+It captures the intent behind schema decisions as compact database comments, applied through migrations with your consent, and treats the database as the source of truth from which documentation derives.
 
-The agent builds `src/SKILL.md`, supporting references, documentation, packaging manifests, release notes, and a maintenance-mode `AGENTS.md`.
+When it finds gaps or conflicts between the database, the code, and the documentation, it surfaces them with evidence and a recommendation and asks you how to proceed, rather than changing schema, security, or indexing on its own.
 
-## After Cleanup
+## What you get
 
-After cleanup, `.template/` should be gone. The repository should read like a normal skill repository, not a generated project.
-
-The generated `AGENTS.md` should explain how to maintain the skill and why important boundaries exist. Future agents should not need to know this template existed.
+A runnable introspection tool that lives in your repository and keeps working without this skill, committed state files you can read and share without a database or credentials, and an entry in your repository's agent instructions so future agents find the capability.
 
 ## Related
 
-- `BOOTSTRAP-WORKFLOW.md` - Full lifecycle and cleanup rationale.
-- `ARCHITECTURE.md` - Repository modes and authority model.
+- [INSTALL.md](INSTALL.md) - Installation options.
+- [ARCHITECTURE.md](ARCHITECTURE.md) - The skill's design and goal.

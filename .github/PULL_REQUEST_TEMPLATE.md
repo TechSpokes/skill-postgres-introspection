@@ -6,9 +6,10 @@ Describe the change and why it matters.
 
 Which area changed?
 
-- [ ] Public README or docs
-- [ ] Bootstrap instructions
-- [ ] Skill scaffold
+- [ ] README or docs
+- [ ] `src/SKILL.md` or `src/references/`
+- [ ] Reference implementation in `src/scripts/`
+- [ ] Test fixtures or verification prompts
 - [ ] Validation scripts
 - [ ] Packaging or release workflow
 - [ ] GitHub community or maintenance files
@@ -16,9 +17,9 @@ Which area changed?
 ## Validation
 
 - [ ] Ran `npm run validate`
-- [ ] Ran `npm run package -- v0.1.0` if packaging or release behavior changed
-- [ ] Checked that generated repositories still transition cleanly from bootstrap mode to maintenance mode
-- [ ] Checked that no private intake or local machine paths were added
+- [ ] Ran `npm run package -- v1.0.0` if packaging or release behavior changed
+- [ ] Updated `src/test-fixtures/verification-prompts.md` if observable behavior changed
+- [ ] Checked that no credentials or real domain schema were added
 
 ## Notes
 

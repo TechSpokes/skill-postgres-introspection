@@ -1,5 +1,5 @@
 name: Feature request
-description: Suggest an improvement to the template or generated repository workflow
+description: Suggest an improvement to the skill or its reference implementation
 labels: [enhancement]
 body:
   - type: textarea
@@ -21,22 +21,23 @@ body:
     attributes:
       label: Area
       options:
-        - Bootstrap workflow
-        - Agent instructions
-        - SKILL.md scaffold
+        - Introspection method
+        - Reference implementation
+        - Reading and judgment
+        - Commenting and intent
+        - Other databases
         - Validation
         - Packaging
         - Release workflow
         - Documentation
-        - Community maintenance
         - Other
     validations:
       required: true
   - type: textarea
-    id: generated-impact
+    id: impact
     attributes:
-      label: Impact on generated repositories
-      description: How would this change affect repositories created from the template?
+      label: Impact
+      description: How would this change affect agents and repositories that use the skill?
   - type: textarea
     id: alternatives
     attributes:

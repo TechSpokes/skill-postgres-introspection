@@ -1,67 +1,56 @@
-# Skill Base Template
+# Postgres Introspection Skill
 
-Skill Base Template is a public GitHub repository template by TechSpokes for creating structured, validated, releasable agent skill repositories from raw intake material.
+This repository packages an agent skill that teaches an AI coding agent to build a database introspection capability inside whatever repository it is working in. The skill is database-agnostic in method, with a runnable PostgreSQL reference implementation.
 
-Use this template when you want a repeatable path from a skill idea to a maintained repository with `SKILL.md`, references, validation scripts, release workflows, and plugin packaging. The template is designed for agent-assisted creation: the user places source material or a short skill idea in `.intake/`, and an AI coding agent turns that material into a standalone skill repository.
+## What introspection is
 
-## Why It Exists
+Introspection is a read-only tool that reads a live database's catalogs and renders the current structure, security (row-level security, roles, grants), views, functions, and extensions into committed, navigable files. It is generated from the live database, not authored by hand, so it always reflects reality.
 
-Agent skills are becoming reusable operational units for AI coding environments. Teams need a consistent way to create them without hand-building repository structure, release assets, validation checks, and maintenance instructions each time.
+It is distinct from two neighbors. Validation asserts that reality matches an expectation and answers yes or no. Documentation records intent and is written by a person. This skill builds introspection only.
 
-This template promotes a structured workflow for automated creation, validation, release, and maintenance of agent skills. It helps skill authors move faster while preserving the reasoning and boundaries future agents need to maintain the skill safely.
+## Why it exists
 
-## What It Provides
+The real state of a database-backed system lives in the database, yet it is hard to see: the authoritative record is usually a large dump and a history of migrations, and the architect's reasons behind the schema are not stored anywhere at all. This skill closes both gaps. It gives the repository a tool that exports the current state into files anyone can read, and a discipline for capturing the architect's intent as comments next to the data.
 
-- Intake-driven skill generation from `.intake/`.
-- Intake adequacy checks for empty, weak, conflicting, or exploratory starts.
-- Bootstrap instructions for AI coding agents.
-- A portable `src/SKILL.md` package layout.
-- Reference, asset, and fixture folders for progressive disclosure.
-- Validation for skill frontmatter, manifests, links, and release boundaries.
-- Template-safe CI, template draft releases, and generated skill release workflows installed during bootstrap cleanup.
-- A cleanup path that converts the generated repository into a standalone maintained skill repo.
+The committed output has two properties that make it valuable. It is shareable offline: anyone can read, search, and diff the schema with no running database and no credentials, which lets teams and different AI agents reason about the database together. It is a time series: because the output is deterministic and stamped with the migration version, the git history becomes a reviewable record of how the database evolved.
 
-## Intended Users
+## What the skill produces in a target repository
 
-This template is for teams and maintainers who want to publish dedicated agent skills without requiring every contributor to understand the full skill packaging process.
+A runnable introspection tool fitted to the repository's own stack, which keeps working after this skill is gone.
 
-It is also useful for organizations adopting structured agent workflows across multiple skill repositories.
+Committed state files: a single navigable data file, a single complete document, and a per-object file per table, view, and function.
 
-## Quick Start
+Generation wired to the migration run, and an entry in the repository's agent instructions so future agents find the capability and read the state instead of reconstructing it.
 
-1. Open this template repository on GitHub.
-2. Click `Use this template` above the file list.
-3. Select `Create a new repository`.
-4. Choose the owner account or organization for the new repository.
-5. Enter a repository name and optional description.
-6. Choose public or private visibility.
-7. Leave `Include all branches` unchecked unless you intentionally need every branch from the template.
-8. Click `Create repository from template`.
-9. Clone the new repository GitHub created, not the template repository.
-10. Add source material, examples, rough notes, or a short skill idea to `.intake/`.
-11. Ask an AI coding agent to build the skill from intake.
-12. Let the agent assess and resolve intake gaps before it builds the skill.
-13. Review the generated skill, docs, packaging, and validation results.
-14. Publish release assets when the generated repository is ready.
+## How a human drives it
 
-Detailed workflow: [docs/BOOTSTRAP-WORKFLOW.md](docs/BOOTSTRAP-WORKFLOW.md).
+Ask an AI coding agent that has this skill to set up database introspection in your repository. Following the skill, the agent confirms with you before building anything, checks that you have a safe database to point at, fits the tool to your stack, generates the committed state, captures intent in comments through migrations with your consent, and wires generation to your migration process.
+
+The skill instructs the agent to treat your data as sacred: to read the database read-only, never reset or wipe a database to obtain a clean state, never touch production without your explicit, informed consent, and bring decisions about schema, security, and indexing to you rather than taking them on its own. What any given agent actually does is outside this project's control; the skill makes these the rules it is told to follow.
+
+## The skill package
+
+- `src/SKILL.md` is the canonical skill entry point.
+- `src/references/` holds the method, the reference implementation guide, the reading and judgment guides, the commenting discipline, the layers guide, the other-databases guide, and the agent-instructions integration.
+- `src/scripts/` is the runnable PostgreSQL reference implementation to read and adapt.
+- `src/test-fixtures/` holds a generic example and verification prompts.
 
 ## Documentation
 
-- [docs/BOOTSTRAP-WORKFLOW.md](docs/BOOTSTRAP-WORKFLOW.md) - Full lifecycle from intake to standalone skill repository.
-- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) - Repository modes, authority model, and design intent.
-- [docs/QUICKSTART.md](docs/QUICKSTART.md) - Short usage path for creating a skill repository.
-- [docs/INSTALL.md](docs/INSTALL.md) - How generated skill packages are installed.
-- [docs/RELEASING.md](docs/RELEASING.md) - Generated skill release checklist and packaging workflow.
-- [docs/TEMPLATE-RELEASING.md](docs/TEMPLATE-RELEASING.md) - Template repository release workflow.
-- [docs/PROVENANCE.md](docs/PROVENANCE.md) - Attribution and distilled-source notes.
-- [CONTRIBUTING.md](CONTRIBUTING.md) - Contribution guidelines.
-- [SUPPORT.md](SUPPORT.md) - Support paths and contact options.
-- [SECURITY.md](SECURITY.md) - Security reporting and sensitive material guidance.
+- [docs/QUICKSTART.md](docs/QUICKSTART.md) - Install the skill and run it against a repository.
+- [docs/INSTALL.md](docs/INSTALL.md) - Standalone and plugin installation.
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) - The skill's design, goal, and structure.
+- [docs/RELEASING.md](docs/RELEASING.md) - Release checklist and packaging.
+- [docs/VERSION.md](docs/VERSION.md) - Versioning and tag format.
+- [docs/PROVENANCE.md](docs/PROVENANCE.md) - Attribution and distilled sources.
+- [CONTRIBUTING.md](CONTRIBUTING.md), [SUPPORT.md](SUPPORT.md), [SECURITY.md](SECURITY.md).
 
-## Template Status
+## Background and project
 
-This repository starts in bootstrap mode. Generated repositories should eventually remove `.template/`, rewrite `README.md`, rewrite `AGENTS.md`, and become standalone skill repositories.
+- [docs/HOW-THIS-SKILL-WAS-BUILT.md](docs/HOW-THIS-SKILL-WAS-BUILT.md) - Its origin, the template that generated it, and how it was refined.
+- [docs/FOUNDATIONS.md](docs/FOUNDATIONS.md) - The frameworks that shaped the skill, at a conceptual level.
+- [docs/ROADMAP.md](docs/ROADMAP.md) - Where the skill is heading and why.
+- [docs/ABOUT.md](docs/ABOUT.md) - The people and companies behind it.
 
 ## Validation
 
@@ -76,16 +65,14 @@ npm run validate
 Run:
 
 ```bash
-npm run package -- v0.1.0
+npm run package -- v1.0.0
 ```
 
 Use the intended release tag. Packaging writes release assets to `dist/assets/`.
 
 ## Author
 
-Authored and maintained by TechSpokes.
-
-Several bootstrap and documentation files contain distilled versions of TechSpokes ideas on agent instructions, README structure, Markdown form engineering, and cross-intelligence communication. See [docs/PROVENANCE.md](docs/PROVENANCE.md).
+Authored and maintained by TechSpokes. See [docs/ABOUT.md](docs/ABOUT.md) for the people and companies behind the skill, and [docs/PROVENANCE.md](docs/PROVENANCE.md) for attribution.
 
 ## License
 

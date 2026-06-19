@@ -1,5 +1,5 @@
 name: Question
-description: Ask a question about using or adapting the template
+description: Ask a question about using or adapting the skill
 labels: [question]
 body:
   - type: textarea
@@ -14,10 +14,11 @@ body:
     attributes:
       label: Topic
       options:
-        - Creating a repository from the template
-        - Preparing intake material
-        - Running the bootstrap agent workflow
-        - Generated AGENTS.md or README.md
+        - Installing the skill
+        - Running it against a repository
+        - Adapting the reference implementation
+        - Applying the method to another database
+        - Reading the state
         - Validation or packaging
         - Publishing release assets
         - Other
@@ -25,4 +26,4 @@ body:
     id: context
     attributes:
       label: Context
-      description: Include links, commands, or non-private examples that help explain the question.
+      description: Include links, commands, or generic examples that help explain the question.

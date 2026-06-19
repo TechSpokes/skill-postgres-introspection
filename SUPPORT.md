@@ -4,16 +4,16 @@ Use the support path that matches your need.
 
 ## Questions
 
-Use GitHub Discussions for questions about using the template, adapting bootstrap instructions, or designing generated skill repositories.
+Use GitHub Discussions for questions about installing the skill, adapting the reference implementation, or applying the method to another database.
 
 ## Bugs
 
-Use GitHub Issues when validation, packaging, workflow files, or documented instructions do not behave as described.
+Use GitHub Issues when validation, packaging, the workflows, the reference scripts, or the documented guidance do not behave as described.
 
-## Commercial Support
+## Commercial support
 
-For professional support, consulting, or custom agent-skill repository design, contact TechSpokes at [www.techspokes.com](https://www.techspokes.com).
+For professional support, consulting, or custom agent-skill design, contact TechSpokes at [www.techspokes.com](https://www.techspokes.com).
 
-## Ideas Behind The Template
+## Ideas behind the skill
 
-If you want to discuss the communication-design ideas behind the template, reach out to Serge Liatko, CEO of TechSpokes, on LinkedIn: [linkedin.com/in/sergeliatko](https://www.linkedin.com/in/sergeliatko/).
+To discuss the communication-design ideas behind the skill, reach out to Serge Liatko, CEO of TechSpokes, on LinkedIn: [linkedin.com/in/sergeliatko](https://www.linkedin.com/in/sergeliatko/).

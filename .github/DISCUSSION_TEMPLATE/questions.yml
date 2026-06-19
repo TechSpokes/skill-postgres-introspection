@@ -4,17 +4,17 @@ body:
   - type: markdown
     attributes:
       value: |
-        Ask questions about using Skill Base Template.
+        Ask questions about using the Postgres Introspection skill.
   - type: dropdown
     id: question-type
     attributes:
       label: Question Type
       options:
         - Getting started
-        - GitHub template flow
-        - Intake preparation
-        - Agent bootstrap workflow
-        - Generated skill structure
+        - Installing the skill
+        - Adapting the reference implementation
+        - Applying the method to another database
+        - Reading the state
         - Validation or release
         - Other
     validations:
@@ -30,4 +30,4 @@ body:
     id: context
     attributes:
       label: Context
-      description: Share commands, repository state, or public examples. Do not include secrets or private intake.
+      description: Share commands, repository state, or generic examples. Do not include secrets or a real domain schema.

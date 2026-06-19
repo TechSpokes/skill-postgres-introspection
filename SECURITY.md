@@ -1,17 +1,13 @@
 # Security
 
-## Supported Versions
+## Supported versions
 
 The `main` branch receives security fixes.
 
-## Reporting A Security Issue
+## Reporting a security issue
 
-Do not open a public issue for private intake exposure, credential leaks, release artifact contamination, or workflow security concerns.
+Do not open a public issue for a credential leak, a release artifact that contains private material, or a workflow security concern. Report it through TechSpokes: [www.techspokes.com](https://www.techspokes.com).
 
-Report security concerns through TechSpokes: [www.techspokes.com](https://www.techspokes.com).
+## Sensitive material
 
-## Sensitive Material
-
-Do not commit secrets, credentials, private customer material, or proprietary intake files.
-
-Raw intake belongs in `.intake/` during bootstrap and must not be included in release artifacts.
+Do not commit secrets, credentials, or a real application's domain schema. The skill itself reads databases read-only and instructs agents never to alter data or touch a production database without explicit, informed consent; keep that stance intact in any contribution.

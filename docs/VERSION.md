@@ -1,12 +1,10 @@
 # Version
 
-The template starts public release at version `1.0.0`.
+The `postgres-introspection` skill starts its public release history at version `1.0.0`.
 
-The current template version is `1.1.0`.
+The version is recorded in `package.json` and in both `packaging/*/plugin.json`, and it is published as a `vX.Y.Z` tag.
 
-Generated skill repositories should reset or continue versioning according to the generated skill's release policy.
-
-## Tag Format
+## Tag format
 
 Use tags in this format:
 

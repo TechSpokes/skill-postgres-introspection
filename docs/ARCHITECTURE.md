@@ -1,107 +1,47 @@
 # Architecture
 
-This document contains a distilled public version of TechSpokes architecture guidance for template-driven agent skill repositories.
+This document explains the design of the `postgres-introspection` skill: its global goal, the three capabilities it transfers, how the package is organized, and why it is shaped that way. It is the design authority for maintenance; `src/SKILL.md` is the runtime implementation and should stay aligned with it.
 
-This template separates bootstrap instructions from generated skill content.
+## Global goal
 
-## Architectural Goal
+Make the database the single living source of truth for both the data and the intent behind its shape, and give any intelligence, human or AI, across teams, a safe, current, shareable view of that truth without a running database or credentials, so that every decision about the data layer is grounded, aligned to the repository's real goals, and never taken at the expense of the data or the operability of the database.
 
-The architecture supports a one-way transition from template to standalone skill repository.
+## The two problems
 
-The template is useful only while it helps an agent transform intake into a maintained skill. After that transformation, the template structure becomes a liability because it can confuse future agents about which instructions are authoritative.
+The skill addresses two problems at once. The first is a tooling gap: there is rarely an easy, read-only way to see the current state of a database, so the truth lives in a large dump and a history of migrations. The second is an intent gap: the architect's reasons behind the schema are not in the database at all. The tool solves the first; the commenting discipline solves the second.
 
-## Design Values
+## Three capabilities
 
-- Separate user evidence from agent instructions.
-- Separate temporary bootstrap logic from durable skill content.
-- Preserve reasoning that future maintainers need.
-- Remove construction scaffolding when it no longer serves the generated repository.
-- Keep release artifacts focused on runtime skill use.
+The skill transfers three intertwined capabilities, not a single recipe.
 
-## Bootstrap Mode
+It teaches the agent to build a read-only introspection tool in the repository, fitted to the repository's own stack, which exports the current state into committed, navigable files.
 
-Bootstrap mode is the initial state after a repository is created from this template.
+It teaches the agent to capture the architect's hidden intent directly in the database as the authoritative record, with documentation deriving from it.
 
-Important areas:
+It teaches the agent to read the exported state with judgment, running an alignment loop that surfaces gaps and conflicts against the repository's goals, confirms with the user, and never changes schema, security, or indexing unilaterally.
 
-- `.intake/` contains user source material.
-- `.template/` contains agent bootstrap instructions.
-- `.template/generated/` contains files that are installed into generated skill repositories.
-- `src/` contains a placeholder skill until generation is complete.
-- `docs/` contains template documentation until rewritten.
-- `packaging/` contains reusable plugin manifest skeletons.
+## Design values
 
-The reason to keep these areas separate is that each area has a different authority level. Intake is evidence from the user. Template files are instructions for the builder. `src/` becomes the runtime product.
+- The database is authoritative; intent lives next to the data, and docs derive from it.
+- The data is sacred; the tool reads read-only and never risks data or operability without informed consent.
+- Judgment is shared; the agent diagnoses, grounds, recommends, and confirms, and never silently defers.
+- Every database change, including a comment, flows through a migration with consent.
+- The method is portable; the PostgreSQL scripts are a worked example, not a mandate.
 
-Bootstrap mode includes an intake adequacy step before skill construction. This step determines whether the available intake can support a transferable skill or whether the agent must resolve missing evidence first.
+## Package layout
 
-## Skill Mode
+`src/SKILL.md` is the canonical entry point and is kept short. It carries the goal stack, the defined terms, the gates, the workflow, and pointers into the references.
 
-Skill mode is the final state after the agent builds the skill and cleans up bootstrap files.
+`src/references/` carries the durable detail, one focused file per concern, loaded only when a step needs it. This is progressive disclosure: the entry point activates the skill and orients the agent, while references protect the context budget until depth is required.
 
-Important areas:
+`src/scripts/` is the runnable PostgreSQL reference implementation, one file per pipeline stage, so the agent can read how each invariant becomes code and then translate it into the host's stack.
 
-- `src/SKILL.md` is the canonical skill entry point.
-- `src/references/` contains durable supporting knowledge.
-- `docs/` explains the generated skill.
-- `AGENTS.md` explains how future agents maintain the skill.
-- `.github/` explains how GitHub issues, discussions, reviews, funding, and repository automation work for the generated skill.
-- `.template/` is deleted.
+`src/test-fixtures/` holds a generic example and verification prompts that confirm the skill still behaves correctly after a change.
 
-Generated skill workflows are installed from `.template/generated/.github/workflows/` during cleanup. The template repository keeps only template-owned workflows active so it validates the scaffold and drafts template releases without publishing placeholder skill assets.
+## Why this shape
 
-The reason `.template/` is deleted is not tidiness. It prevents future agents from optimizing for bootstrap goals after the repository's purpose has changed.
+The invariants in `references/approach.md` (read-only, sourced from live catalogs, deterministic, one model rendered many ways, one classification path) are what make the output trustworthy and addressable. The entry point leads with the must-know and the gates so a skimming agent cannot miss the confirm-first and data-safety rules. References lead with the point and then the rationale, so an agent that loads one file still gets the goal it needs to make good local decisions. The generated output follows minimal, greppable Markdown so it stays parseable by humans, agents, and tools, and its heading outline serves as a cheap map.
 
-## Authority Model
+## Maintenance implication
 
-During bootstrap, authority flows in this order:
-
-1. User request and repository `AGENTS.md`.
-2. `.template/bootstrap/` instructions.
-3. `.intake/` source material.
-4. Existing placeholder files.
-
-When `.intake/` is empty or insufficient, the agent may create temporary assessment files under `.template/state/` and durable evidence under `.intake/`. The assessment files guide construction while bootstrap mode is active. The evidence files become part of the intake boundary and must still be excluded from release artifacts unless transformed into safe runtime references.
-
-During maintenance mode, authority changes:
-
-1. The generated repository `AGENTS.md`.
-2. `docs/ARCHITECTURE.md`.
-3. Generated docs and release process.
-4. `src/SKILL.md`.
-5. New material intentionally placed in `.intake/` for updates.
-
-`src/SKILL.md` is the canonical skill entry point for installed agent hosts, but it is not the highest-level design authority for repository maintenance. In maintenance work, `SKILL.md` is the runtime implementation of the skill. It should stay aligned with the repository `AGENTS.md` and the design intent documented in `docs/ARCHITECTURE.md`.
-
-This authority shift is why rewriting `AGENTS.md` is required. The old file governs construction. The new file governs maintenance. `docs/ARCHITECTURE.md` should preserve the reasoning behind the generated skill's structure so future agents can judge when an implementation change is aligned with the design and when it changes the design itself.
-
-## Communication Design
-
-The template applies cross-intelligence communication rules:
-
-- Goals appear before procedures.
-- Terms with likely ambiguity are defined.
-- Hard rules are separate from context.
-- Critical constraints are front-loaded.
-- Release packaging boundaries are explicit.
-- Validation checks deterministic conditions where possible.
-
-These rules exist because future agents may load partial context, interpret terms differently, or operate under different host constraints. Rationale gives them enough orientation to adapt while preserving purpose.
-
-## Theory Integration
-
-The underlying theory files are intentionally not bundled as full research documents. They are large, exploratory, and broader than this template's operational need.
-
-The template uses adapted theory instead:
-
-- `.template/bootstrap/theory-context.md` carries the compact reasoning model for bootstrap agents.
-- `.template/bootstrap/cross-intelligence-communication.md` converts that model into practical writing rules.
-- Generated repositories should preserve relevant rationale in `AGENTS.md`, `README.md`, and `docs/ARCHITECTURE.md`.
-
-This keeps bootstrap context useful without forcing every generated repository to inherit the full research archive.
-
-## Maintenance Implication
-
-Generated repositories should keep enough reasoning to support future updates. Maintenance docs should explain why the skill is structured as it is, which references are volatile, which boundaries protect scope, and which release rules protect users.
-
-Do not preserve bootstrap rationale just because it exists. Preserve only rationale that helps maintain the generated skill.
+Keep the runtime implementation in `src/SKILL.md` aligned with this design. When a change alters the design rather than the implementation, update this document so future maintainers can tell the difference. Preserve the rationale that supports local judgment; drop detail that no longer serves the skill.

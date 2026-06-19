@@ -4,18 +4,19 @@ body:
   - type: markdown
     attributes:
       value: |
-        Start a general discussion about Skill Base Template.
+        Start a general discussion about the Postgres Introspection skill.
   - type: dropdown
     id: topic-category
     attributes:
       label: Topic Category
       options:
-        - Template direction
-        - Agent skill repository patterns
-        - Bootstrap workflow
+        - Skill direction
+        - Introspection method
+        - Reference implementation
+        - Reading and judgment
+        - Commenting and intent
         - Validation and release
         - Documentation
-        - Community adoption
         - Other
     validations:
       required: true

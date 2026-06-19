@@ -1,42 +1,33 @@
 # Contributing
 
-Thank you for improving Skill Base Template.
+Thank you for improving the Postgres Introspection skill.
 
 ## Purpose
 
-This project helps teams create structured, validated, releasable agent skill repositories from raw intake material. Contributions should preserve that purpose.
+This repository maintains and releases the `postgres-introspection` agent skill. Contributions should preserve its purpose: teaching an agent to build a read-only database introspection capability, capture intent in the database, and read the state with judgment, while keeping data safe.
 
-## Good Contributions
+## Good contributions
 
-- Improve bootstrap instructions for agents.
-- Improve generated repository maintenance guidance.
-- Improve validation or release packaging.
-- Improve documentation clarity for new GitHub users.
-- Add checks that prevent raw intake or bootstrap files from leaking into release assets.
-- Clarify rationale behind instructions when it improves downstream agent judgment.
+- Improve the clarity or correctness of `src/SKILL.md` and the files in `src/references/`.
+- Improve or extend the PostgreSQL reference implementation in `src/scripts/`.
+- Improve the worked examples and verification prompts in `src/test-fixtures/`.
+- Improve documentation for humans and maintainers.
+- Strengthen the data-safety, source-of-truth, and judgment guidance.
 
-## Before Opening A Pull Request
+## Before opening a pull request
 
-- Read `README.md`.
-- Read `docs/ARCHITECTURE.md`.
+- Read `README.md` and `docs/ARCHITECTURE.md`.
 - Run `npm run validate`.
-- Run `npm run package -- v0.1.0` when changing packaging or release behavior.
+- Run `npm run package -- v1.0.0` when changing packaging or release behavior.
 
-## Documentation Standards
+## Documentation standards
 
-Use plain Markdown with real headings, short paragraphs, flat lists, and fenced code blocks with language identifiers.
+Use plain Markdown with real headings, prose paragraphs of one to three sentences, flat atomic lists, and fenced code blocks with language identifiers. Do not use bold as a heading or em dashes as punctuation. Prefer explaining why a rule exists when a future agent may need to adapt it.
 
-Prefer explaining why a rule exists when future agents may need to adapt it. Avoid adding long theory directly to the README. Put operational depth in `docs/` or `.template/bootstrap/`.
+## Pull request expectations
 
-## Pull Request Expectations
+Each pull request should explain what changed, why it matters, and how it was validated.
 
-Each pull request should explain:
+## Security and privacy
 
-- What changed.
-- Why it matters.
-- How it was validated.
-- Whether generated repositories are affected.
-
-## Security And Privacy
-
-Do not commit private intake material, credentials, tokens, or proprietary examples. Use minimal public examples when demonstrating a workflow.
+Do not commit credentials, tokens, or a real application's domain schema. Use minimal, generic public examples when demonstrating the skill.

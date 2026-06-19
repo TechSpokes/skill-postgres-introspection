@@ -1,14 +1,18 @@
 {
-  "name": "placeholder-skill",
-  "version": "0.1.0",
-  "description": "Placeholder plugin manifest for a generated agent skill.",
+  "name": "postgres-introspection",
+  "version": "1.0.0",
+  "description": "Teaches an AI agent to build a read-only database introspection capability inside the repository it is working in, rendering live database state into committed, navigable files. Database-agnostic method with a PostgreSQL reference implementation.",
   "author": {
-    "name": "Template Author"
+    "name": "TechSpokes"
   },
-  "homepage": "https://github.com/OWNER/REPOSITORY",
-  "repository": "https://github.com/OWNER/REPOSITORY",
+  "homepage": "https://github.com/TechSpokes/skill-postgres-introspection",
+  "repository": "https://github.com/TechSpokes/skill-postgres-introspection",
   "keywords": [
     "agent-skill",
-    "claude-plugin"
+    "claude-plugin",
+    "postgres",
+    "postgresql",
+    "database",
+    "introspection"
   ]
 }

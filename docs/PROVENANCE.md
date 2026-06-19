@@ -1,32 +1,19 @@
 # Provenance
 
-Skill Base Template was created by TechSpokes: [www.techspokes.com](https://www.techspokes.com).
+The `postgres-introspection` skill was created and is maintained by TechSpokes: [www.techspokes.com](https://www.techspokes.com).
 
-## Distilled Materials
+## Origin and method
 
-Several bootstrap files in this repository contain distilled, operational versions of TechSpokes internal research and specifications. They are adapted for public template use and are not full copies of the original source documents.
+The method grew out of earlier work designing a PostgreSQL-native data layer for legal-document analysis, and the repository was generated from the TechSpokes [Skill Base Template](https://github.com/TechSpokes/skill-base-template). The full account is in [HOW-THIS-SKILL-WAS-BUILT.md](HOW-THIS-SKILL-WAS-BUILT.md).
 
-Distilled areas include:
+## Intellectual foundations
 
-- Cross-intelligence communication theory.
-- AGENTS.md structure and instruction-file design.
-- README.md structure and public repository cover guidance.
-- Markdown form engineering and style rules.
-- Problem framing and task decomposition.
-- Agent skill repository packaging and maintenance workflow.
+The skill applies proprietary TechSpokes frameworks for cross-intelligence communication, problem framing, and document form. They are credited and described at a conceptual level in [FOUNDATIONS.md](FOUNDATIONS.md) and are not reproduced in full.
 
-## Why The Full Sources Are Not Bundled
+## People
 
-The original research files are broader, longer, and more exploratory than this template needs. Bundling them would increase context load and make bootstrap agents distinguish research notes from actionable instructions.
+The people and companies behind the skill are introduced in [ABOUT.md](ABOUT.md).
 
-This repository carries the operational guidance needed to build and maintain skill repositories. It preserves the relevant reasoning in compact form.
+## Contact
 
-## Ideas Behind The Template
-
-The template applies TechSpokes ideas about cross-intelligence communication, agent-readable repository structure, directive-file design, Markdown as transport engineering, and the transition from bootstrap instructions to maintainable agent skill repositories.
-
-The central idea is that agent instructions work better when they preserve purpose, reasoning, authority boundaries, and verification paths rather than only listing steps.
-
-## Discussion
-
-If these ideas are relevant to your work, reach out to Serge Liatko, CEO of TechSpokes, on LinkedIn: [linkedin.com/in/sergeliatko](https://www.linkedin.com/in/sergeliatko/).
+To discuss the ideas behind the skill, reach out to Serge Liatko, CEO of TechSpokes, on LinkedIn: [linkedin.com/in/sergeliatko](https://www.linkedin.com/in/sergeliatko/).

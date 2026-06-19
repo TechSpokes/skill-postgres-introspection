@@ -1,23 +1,23 @@
-# Welcome To Skill Base Template Discussions
+# Welcome To Postgres Introspection Discussions
 
-Skill Base Template is a public TechSpokes template for creating structured, validated, releasable agent skill repositories from raw intake material.
+This repository maintains the `postgres-introspection` agent skill by TechSpokes, which teaches an AI coding agent to build a read-only database introspection capability inside the repository it works in.
 
 ## What To Discuss Here
 
-- Questions about creating repositories from the template.
-- Ideas for improving agent skill bootstrap workflows.
-- Examples of generated skill repositories.
-- Validation, packaging, and release workflows for skills.
+- Questions about installing the skill and running it against a repository.
+- Ideas for improving the method, the reference implementation, or the guidance.
+- Applying the method to databases other than PostgreSQL.
+- Validation, packaging, and release workflows for the skill.
 - Communication-design ideas for agent-readable instructions.
 
 ## Quick Links
 
 - [README](../README.md)
-- [Bootstrap workflow](../docs/BOOTSTRAP-WORKFLOW.md)
+- [Quickstart](../docs/QUICKSTART.md)
 - [Architecture](../docs/ARCHITECTURE.md)
 - [Contributing](../CONTRIBUTING.md)
 - [Support](../SUPPORT.md)
 
 ## Community Notes
 
-Keep examples public and remove private intake material before sharing. Focus on practical improvements that help generated skill repositories become easier to create, validate, release, and maintain.
+Keep examples public and generic. Do not share credentials or a real application's domain schema. Focus on practical improvements that help teams introspect their databases safely.

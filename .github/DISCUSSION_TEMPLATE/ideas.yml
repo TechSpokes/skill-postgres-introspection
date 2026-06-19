@@ -4,7 +4,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Share ideas for improving Skill Base Template or the generated repository lifecycle.
+        Share ideas for improving the Postgres Introspection skill.
   - type: textarea
     id: idea
     attributes:
@@ -24,12 +24,14 @@ body:
     attributes:
       label: Area
       options:
-        - Intake workflow
-        - Bootstrap instructions
-        - Generated skill structure
+        - Introspection method
+        - Reference implementation
+        - Reading and judgment
+        - Commenting and intent
+        - Other databases
         - Validation
         - Release packaging
-        - Maintenance docs
+        - Documentation
         - Other
   - type: checkboxes
     id: contribution
@@ -37,5 +39,5 @@ body:
       label: Contribution
       options:
         - label: I can help test this idea.
-        - label: I can provide an example generated skill repository.
+        - label: I can provide a generic example.
         - label: I can help with documentation.

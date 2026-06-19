@@ -2,8 +2,8 @@
 
 Follow the repository `AGENTS.md` first.
 
-This repository is a template for generating standalone agent skill repositories. Keep bootstrap instructions, user intake, generated skill content, and release artifacts separate.
+This repository maintains and releases the `postgres-introspection` agent skill. The canonical skill entry point is `src/SKILL.md`, with durable detail in `src/references/` and a runnable reference implementation in `src/scripts/`.
 
 For Markdown files, also follow `.github/instructions/markdown.instructions.md`.
 
-Run `npm run validate` after changing scaffold, docs, validation, or packaging files.
+Run `npm run validate` after changing the skill, references, scripts, docs, packaging, or workflows.

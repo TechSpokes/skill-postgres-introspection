@@ -1,44 +1,33 @@
-# Generated Skill Releasing
+# Releasing
 
-This document describes release packaging for generated skill repositories after bootstrap cleanup.
+This document describes how to release the `postgres-introspection` skill.
 
-Template repository releases use a separate process. See `docs/TEMPLATE-RELEASING.md`.
+## Release goal
 
-Generated skill release workflows live under `.template/generated/.github/workflows/` until the bootstrap agent installs them during cleanup.
+Release assets should contain only what an agent host needs to install and use the skill. The process protects skill portability by packaging the runtime skill cleanly, and maintainer confidence by requiring a changelog entry and release notes.
 
-## Release Goal
+## Release checklist
 
-Release assets should contain only what an agent host needs to install and use the generated skill.
-
-The release process protects three things:
-
-- User privacy by excluding raw intake.
-- Skill portability by packaging the runtime skill cleanly.
-- Maintainer confidence by requiring changelog and release notes.
-
-## Release Checklist
-
-- Update `src/SKILL.md`.
-- Update supporting files in `src/references/`.
-- Update `README.md` and docs.
-- Update `CHANGELOG.md`.
+- Update `src/SKILL.md` and the relevant files in `src/references/` and `src/scripts/`.
+- Update `README.md` and the files in `docs/`.
+- Add a `## [vX.Y.Z]` section to `CHANGELOG.md`.
 - Add `docs/releases/vX.Y.Z.md`.
-- Update packaging manifests.
+- Update the version in `package.json` and both `packaging/*/plugin.json`.
 - Run `npm run validate`.
 - Tag the release with `vX.Y.Z`.
 
-Each checklist item exists to keep repository state, package metadata, and release history synchronized. Skipping one makes it harder for future agents to understand what changed and whether an artifact is safe to publish.
+Each item keeps repository state, package metadata, and release history synchronized.
 
-## Local Packaging
+## Local packaging
 
 Run:
 
 ```bash
-npm run package -- v0.1.0
+npm run package -- v1.0.0
 ```
 
 Use the intended tag. Assets are written to `dist/assets/`.
 
-## GitHub Release
+## GitHub release
 
-After bootstrap cleanup, pushing a `vX.Y.Z` tag in a generated skill repository runs `.github/workflows/release-draft.yml`. The workflow creates or updates a draft release and uploads ZIP assets.
+Pushing a `vX.Y.Z` tag runs `.github/workflows/release-draft.yml`. The workflow validates the skill, packages assets, creates or updates a draft release from `docs/releases/vX.Y.Z.md`, and uploads the ZIP assets. It requires a matching `## [vX.Y.Z]` section in `CHANGELOG.md`.

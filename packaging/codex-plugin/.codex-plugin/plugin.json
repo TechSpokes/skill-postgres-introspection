@@ -1,29 +1,34 @@
 {
-  "name": "placeholder-skill",
-  "version": "0.1.0",
-  "description": "Placeholder plugin manifest for a generated agent skill.",
+  "name": "postgres-introspection",
+  "version": "1.0.0",
+  "description": "Teaches an AI agent to build a read-only database introspection capability inside the repository it is working in, rendering live database state into committed, navigable files. Database-agnostic method with a PostgreSQL reference implementation.",
   "author": {
-    "name": "Template Author"
+    "name": "TechSpokes"
   },
-  "homepage": "https://github.com/OWNER/REPOSITORY",
-  "repository": "https://github.com/OWNER/REPOSITORY",
+  "homepage": "https://github.com/TechSpokes/skill-postgres-introspection",
+  "repository": "https://github.com/TechSpokes/skill-postgres-introspection",
   "keywords": [
     "agent-skill",
-    "codex-plugin"
+    "codex-plugin",
+    "postgres",
+    "postgresql",
+    "database",
+    "introspection"
   ],
   "skills": "./skills/",
   "interface": {
-    "displayName": "Placeholder Skill",
-    "shortDescription": "Placeholder skill package generated from the template.",
-    "longDescription": "Replace this manifest when the agent generates the real skill.",
-    "developerName": "Template Author",
-    "category": "Productivity",
+    "displayName": "Database Introspection",
+    "shortDescription": "Build read-only database introspection into the repository you are working in.",
+    "longDescription": "Teaches an AI agent the introspection method and how to recreate the tooling inside its own repository: a read-only tool that reads a live database's catalogs and renders the structure, security, and exposed surface into committed, navigable files. Database-agnostic with a PostgreSQL reference implementation, extends to layers such as the cluster, a connection pooler, and a REST layer.",
+    "developerName": "TechSpokes",
+    "category": "Developer Tools",
     "capabilities": [
+      "Read",
       "Write"
     ],
-    "websiteURL": "https://github.com/OWNER/REPOSITORY",
+    "websiteURL": "https://github.com/TechSpokes/skill-postgres-introspection",
     "defaultPrompt": [
-      "Build the skill from intake."
+      "Set up database introspection in this repository."
     ],
     "brandColor": "#2563EB"
   }

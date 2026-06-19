@@ -4,17 +4,17 @@ body:
   - type: markdown
     attributes:
       value: |
-        Share a skill repository or workflow created from Skill Base Template.
+        Share how you used the Postgres Introspection skill.
   - type: input
     id: repository
     attributes:
       label: Repository Or Project
-      description: Link to the generated repository or describe the project.
+      description: Link to the repository or describe the project.
   - type: textarea
-    id: skill
+    id: usage
     attributes:
-      label: Skill Description
-      description: What does the generated skill help agents do?
+      label: How You Used It
+      description: What did the introspection setup help you do?
     validations:
       required: true
   - type: textarea
@@ -26,4 +26,4 @@ body:
     id: lessons
     attributes:
       label: Lessons Learned
-      description: What would help others using this template?
+      description: What would help others using this skill?
