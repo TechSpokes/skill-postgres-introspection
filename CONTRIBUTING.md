@@ -14,11 +14,15 @@ This repository maintains and releases the `postgres-introspection` agent skill.
 - Improve documentation for humans and maintainers.
 - Strengthen the data-safety, source-of-truth, and judgment guidance.
 
+## How changes land
+
+Changes reach `main` only through a squash-merged pull request that passes the `Validate skill package` check. Direct pushes to `main` are blocked for everyone. The full workflow and the repository protections are described in `docs/RELEASING.md`.
+
 ## Before opening a pull request
 
 - Read `README.md` and `docs/ARCHITECTURE.md`.
 - Run `npm run validate`.
-- Run `npm run package -- v1.0.0` when changing packaging or release behavior.
+- Run `npm run package -- vX.Y.Z` with any tag when changing packaging or release behavior, to confirm the assets build.
 
 ## Documentation standards
 

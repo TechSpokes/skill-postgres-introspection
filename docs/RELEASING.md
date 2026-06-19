@@ -1,33 +1,59 @@
-# Releasing
+# Releasing and repository workflow
 
-This document describes how to release the `postgres-introspection` skill.
+This document describes how changes land in this repository and how a release is cut. It is written for a human or an agent maintaining the repository, and it explains both the steps and the GitHub features that enforce them.
 
-## Release goal
+## How changes land
 
-Release assets should contain only what an agent host needs to install and use the skill. The process protects skill portability by packaging the runtime skill cleanly, and maintainer confidence by requiring a changelog entry and release notes.
+The `main` branch is protected, so no change reaches it by a direct push, including from an administrator. Every change goes through a pull request that passes checks and is then squash-merged.
 
-## Release checklist
+The flow for any change:
 
-- Update `src/SKILL.md` and the relevant files in `src/references/` and `src/scripts/`.
-- Update `README.md` and the files in `docs/`.
-- Add a `## [vX.Y.Z]` section to `CHANGELOG.md`.
-- Add `docs/releases/vX.Y.Z.md`.
-- Update the version in `package.json` and both `packaging/*/plugin.json`.
-- Run `npm run validate`.
-- Tag the release with `vX.Y.Z`.
+1. Create a branch from `main`.
+2. Make the change and run `npm run validate` locally.
+3. Push the branch and open a pull request into `main`.
+4. Wait for the required `Validate skill package` check to pass.
+5. Resolve any review conversations.
+6. Squash-merge the pull request. The branch is deleted automatically.
 
-Each item keeps repository state, package metadata, and release history synchronized.
+Dependabot changes follow the same path. It opens pull requests for GitHub Actions and dependency updates, which must pass the check and be squash-merged, exactly as the `actions/checkout` bump in pull request #1 was.
 
-## Local packaging
+## What protects `main`
 
-Run:
+A repository ruleset named "main protection" targets the default branch with these rules:
 
-```bash
-npm run package -- v1.0.0
-```
+- A pull request is required before merging, with conversation resolution required and stale approvals dismissed on push.
+- The `Validate skill package` status check must pass, and the branch must be up to date with `main` first.
+- Force pushes and branch deletion are blocked.
+- Linear history is required, and the only allowed merge method is squash.
+- The rules are enforced for administrators too; no actor can bypass them.
 
-Use the intended tag. Assets are written to `dist/assets/`.
+Required approvals are set to zero so a solo maintainer is not blocked. Raise this to one and require `CODEOWNERS` review if a second maintainer becomes active.
 
-## GitHub release
+## Other repository safeguards
 
-Pushing a `vX.Y.Z` tag runs `.github/workflows/release-draft.yml`. The workflow validates the skill, packages assets, creates or updates a draft release from `docs/releases/vX.Y.Z.md`, and uploads the ZIP assets. It requires a matching `## [vX.Y.Z]` section in `CHANGELOG.md`.
+Secret scanning and push protection are enabled, so a credential pushed by mistake is caught before it reaches the public repository. Dependabot alerts and security updates are enabled, alongside the version updates configured in `.github/dependabot.yml`.
+
+## Continuous integration
+
+`.github/workflows/ci.yml` runs on pull requests and on pushes to `main`. Its job, `Validate skill package`, runs `npm run validate` and a packaging smoke test. This job is the required status check, so a pull request cannot merge unless validation and packaging succeed.
+
+## Cutting a release
+
+A release is a version bump landed through a pull request, followed by a tag.
+
+1. On a branch, update `src/SKILL.md` and the relevant files in `src/references/` and `src/scripts/`, then `README.md` and the files in `docs/`.
+2. Set the new version in `package.json` and in both `packaging/*/plugin.json`.
+3. Add a `## [vX.Y.Z]` section to `CHANGELOG.md`, move any entries from `## [Unreleased]` into it, and reset `## [Unreleased]` to note no unreleased changes. The release workflow requires this exact heading for the tag.
+4. Add `docs/releases/vX.Y.Z.md` with the release notes. The release workflow requires this file for the tag.
+5. Run `npm run validate`, then `npm run package -- vX.Y.Z` to confirm the assets build. Assets are written to `dist/assets/`, which is git-ignored.
+6. Open the pull request, let the check pass, and squash-merge it into `main`.
+
+## Tagging and the draft release
+
+After the version bump is on `main`, push a `vX.Y.Z` tag. Pushing a tag is not a push to the `main` branch, so the branch ruleset does not block it. The tag triggers `.github/workflows/release-draft.yml`, which validates the skill, packages the assets, creates or updates a draft GitHub release from `docs/releases/vX.Y.Z.md`, and uploads the ZIP assets. It refuses to run if the matching `## [vX.Y.Z]` section in `CHANGELOG.md` or the release-notes file is missing.
+
+The workflow leaves the release as a draft. Review it on GitHub and publish it manually.
+
+## Versioning
+
+The version policy and tag format are in [VERSION.md](VERSION.md).
