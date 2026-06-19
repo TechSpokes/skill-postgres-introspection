@@ -1,6 +1,6 @@
 {
   "name": "postgres-introspection",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Teaches an AI agent to build a read-only database introspection capability inside the repository it is working in, rendering live database state into committed, navigable files. Database-agnostic method with a PostgreSQL reference implementation.",
   "author": {
     "name": "TechSpokes"
